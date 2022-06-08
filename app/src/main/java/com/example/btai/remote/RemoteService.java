@@ -1,17 +1,19 @@
 package com.example.btai.remote;
 
 
+import com.example.btai.Result;
+
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.GET;
 import retrofit2.http.Multipart;
+import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RemoteService {
     @Multipart
-    @GET("")
-    Call<String> getArtImage(@Part MultipartBody.Part part,
-                             @Query("api_key") String key);
+    @POST("/gen-image")
+    Call<Result> getArtImage(@Part MultipartBody.Part file,
+                             @Part("style") RequestBody style);
 }
